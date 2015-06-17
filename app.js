@@ -32,6 +32,12 @@ function createElement(music){
 
   item.appendChild(title);
   item.appendChild(artist);
+
+  var handler = function(){
+    alert(music.title);
+  };
+
+  item.addEventListener("click", handler);
   
   return item;
 }
