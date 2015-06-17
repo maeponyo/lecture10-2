@@ -36,7 +36,6 @@ function playNextMusic(){
   var player = document.querySelector("audio");
   player.play();
 }
-  
 
 function createElement(music){
   var item = document.createElement("li");
