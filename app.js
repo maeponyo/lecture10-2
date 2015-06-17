@@ -2,22 +2,22 @@ var playList = [
   {
     title: "title A",
     artist: "artist A",
-    file: "01.mp3"
+    src: "01.mp3"
   },
   {
     title: "title B",
     artist: "artist B",
-    file: "02.mp3"
+    src: "02.mp3"
   },
   {
     title: "title C",
     artist: "artist C",
-    file: "03.mp3"
+    src: "03.mp3"
   },
   {
     title: "title D",
     artist: "artist D",
-    file: "04.mp3"
+    src: "04.mp3"
   }  
 ];
 
