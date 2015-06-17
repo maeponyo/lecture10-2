@@ -21,6 +21,22 @@ var playList = [
   }  
 ];
 
+var current = -1;
+
+function nextMusic(){
+  current = (current + 1) % playList.length;
+  var music = playList[current];
+  var player = document.querySelector("audio");
+  player.src = music.src;
+  return music;
+}
+
+function playNextMusic(){
+  nextMusic();
+  var player = document.querySelector("audio");
+  player.play();
+}
+
 function createElement(music){
   var item = document.createElement("li");
 
@@ -50,11 +66,15 @@ function loadPlayList(){
     list.appendChild(createElement(playList[i]));
     i = i + 1;
   }
+  nextMusic();
 }
 
 function initialize(){
   var loadButton = document.querySelector("#load");
   loadButton.addEventListener("click", loadPlayList);
+
+  var player = document.querySelector("audio");
+  player.addEventListener("ended", playNextMusic);
 }
 
 window.addEventListener("load", initialize);
