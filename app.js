@@ -34,7 +34,8 @@ function createElement(music){
   item.appendChild(artist);
 
   var handler = function(){
-    alert(music.title);
+    var player = document.querySelector("audio");
+    player.src = music.src;
   };
 
   item.addEventListener("click", handler);
