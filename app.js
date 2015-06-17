@@ -23,7 +23,16 @@ var playList = [
 
 function createElement(music){
   var item = document.createElement("li");
-  item.textContent = music.title;
+
+  var title = document.createElement("p");
+  title.textContent = music.title;
+
+  var artist = document.createElement("p");
+  artist.textContent = music.artist;
+
+  item.appendChild(title);
+  item.appendChild(artist);
+  
   return item;
 }
 
