@@ -1,21 +1,21 @@
 var playList = [
   {
-    title: "title A",
+    title: "私だけに",
     artist: "artist A",
     src: "01.mp3"
   },
   {
-    title: "title B",
+    title: "ミルク",
     artist: "artist B",
     src: "02.mp3"
   },
   {
-    title: "title C",
+    title: "私が踊るとき",
     artist: "artist C",
     src: "03.mp3"
   },
   {
-    title: "title D",
+    title: "ママ、どこなの",
     artist: "artist D",
     src: "04.mp3"
   }  
@@ -23,11 +23,18 @@ var playList = [
 
 var current = -1;
 
+function showNowPlaying(value){
+  var label = document.querySelector("#nowplayind");
+  var music = playList[value];
+  label.textContent =  music.title;
+}
+
 function nextMusic(){
   current = (current + 1) % playList.length;
   var music = playList[current];
   var player = document.querySelector("audio");
   player.src = music.src;
+  showNowPlaying(current);
   return music;
 }
 
@@ -37,7 +44,9 @@ function playNextMusic(){
   player.play();
 }
 
-function createElement(music){
+function createElement(i){
+  var music = playList[i];
+
   var item = document.createElement("li");
 
   var title = document.createElement("p");
@@ -52,6 +61,10 @@ function createElement(music){
   var handler = function(){
     var player = document.querySelector("audio");
     player.src = music.src;
+    current = i;
+    console.log(current)
+    showNowPlaying(current);
+    player.play();
   };
 
   item.addEventListener("click", handler);
@@ -63,15 +76,16 @@ function loadPlayList(){
   var list = document.querySelector("#list");
   var i = 0;
   while(i < playList.length){
-    list.appendChild(createElement(playList[i]));
+    list.appendChild(createElement(i));
     i = i + 1;
   }
   nextMusic();
 }
 
 function initialize(){
-  var loadButton = document.querySelector("#load");
-  loadButton.addEventListener("click", loadPlayList);
+  /*var loadButton = document.querySelector("#load");
+  loadButton.addEventListener("click", loadPlayList);*/
+  loadPlayList();
 
   var player = document.querySelector("audio");
   player.addEventListener("ended", playNextMusic);
